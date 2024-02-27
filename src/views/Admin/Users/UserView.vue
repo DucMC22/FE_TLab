@@ -85,18 +85,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="i in 10" :key="i">
+                  <tr v-for="i in users" :key="i">
                     <td>
                       <v-img
                         width="60"
                         height="50"
-                        src="https://scr.vn/wp-content/uploads/2020/07/H%C3%ACnh-si%C3%AAu-xe-Lamborghini-scaled.jpg"
+                        :src=i.imageUrl
                       ></v-img>
                     </td>
-                    <td>Người dùng {{ i }}</td>
-                    <td>ducvnhhh0907@gmail.com</td>
-                    <td>09/07/2002</td>
-                    <td>0343595727</td>
+                    <td> {{ i.name }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.birthday }}</td>
+                    <td>{{ i.phonenumber }}</td>
                     <td class="text-left">
                       <div style="display: flex">
                         <v-icon class="mr-3" style="opacity: 0.5; cursor: pointer;"
@@ -141,17 +141,25 @@
     </div>
   </template>
   
-  <script>
-  import DialogVue from "../../components/DialogUsers.vue";
-  export default {
-    data() {
-      return {
-        dialog: false,
-      };
-    },
-    components: { DialogVue },
-    name: "UserView",
-  };
+  <script setup>
+  import { onMounted, ref } from "vue";
+  import DialogVue from "../../../components/Admin/User/DialogView.vue";
+  const dialog=ref(false)
+
+
+import { userServiceApi } from "@/service/user.api"
+import {useUsers} from '../Users/Users'
+const {users,query,getAllUsers}=useUsers()
+onMounted(async=>{
+  getData()
+})
+
+
+const getData=async ()=>{
+  const res=await getAllUsers()
+  console.log(res);
+  users.value=res.data
+}
   </script>
   
   <style>

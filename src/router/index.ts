@@ -16,12 +16,12 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'product',
-        component: () => import('../views/Admin/SanPham.vue'),
+        component: () => import('../views/Admin/Product/SanPham.vue'),
         props: true
       },
       {
         path: 'users',
-        component: () => import('../views/Admin/UserView.vue'),
+        component: () => import('../views/Admin/Users/UserView.vue'),
         props: true
       },
     ]
@@ -30,7 +30,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/dangnhap',
     name: 'DangNhap',
     component: () => import(/* webpackChunkName: "about" */ '../views/Admin/DangNhap.vue')
-  }
+  },
+  {
+    path: '/login',
+    name: PageName.LOGIN_PAGE,
+    component: () => import('../views/Login/LoginView.vue'),
+    meta: {
+      public: true,
+    },
+  },
 ]
 
 const router = createRouter({

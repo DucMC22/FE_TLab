@@ -12,7 +12,7 @@
 import SideBar from "@/components/SideBar.vue";
 import TopBar from "@/components/TopBar.vue";
 import SanPhamVue from "../Product/SanPham.vue";
-import UsersVue from "./UserView.vue";
+import UsersVue from "./Users/UserView.vue";
 export default {
   components: { TopBar, SideBar, SanPhamVue, UsersVue },
 };

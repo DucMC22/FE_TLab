@@ -8,10 +8,11 @@
       >
         <v-img
           class="mx-auto my-6"
-          max-width="150"
+          width="108px"
+          height="60px"
           src="https://res.cloudinary.com/dgtjdhrnq/image/upload/v1705460127/logo1_adshdl.png"
         ></v-img>
-        <div class="text-h4 text-center" style="font-size: 32px">Đăng nhập</div>
+        <div class="text-h4 text-center" style="font-size: 32px" >Đăng nhập</div>
         <div class="text-subtitle-1 text-medium-emphasis">Email</div>
   
         <v-text-field
