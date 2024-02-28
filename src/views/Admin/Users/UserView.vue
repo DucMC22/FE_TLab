@@ -43,7 +43,7 @@
                       Avatar
                     </th>
                     <th
-                      class="text-left"
+                      class="text-center"
                       style="opacity: 0.5"
                       width="96px"
                       height="15px"
@@ -51,7 +51,7 @@
                       Tên người dùng
                     </th>
                     <th
-                      class="text-left"
+                      class="text-center"
                       style="opacity: 0.5"
                       width="96px"
                       height="15px"
@@ -93,8 +93,8 @@
                         :src=i.imageUrl
                       ></v-img>
                     </td>
-                    <td> {{ i.name }}</td>
-                    <td>{{ i.email }}</td>
+                    <td class="text-center"> {{ i.name }}</td>
+                    <td class="text-center">{{ i.email }}</td>
                     <td>{{ i.birthday }}</td>
                     <td>{{ i.phonenumber }}</td>
                     <td class="text-left">
@@ -102,9 +102,8 @@
                         <v-icon class="mr-3" style="opacity: 0.5; cursor: pointer;"
                           >mdi mdi-square-edit-outline</v-icon
                         >
-                        <v-icon style="opacity: 0.5; cursor: pointer;"
-                          >mdi mdi-trash-can-outline</v-icon
-                        >
+                        <v-btn variant="text" @click="idDelete=i.id;dialogDelete=true"><v-icon style="opacity: 0.5">
+                      mdi mdi-trash-can-outline</v-icon></v-btn>
                       </div>
                     </td>
                   </tr>
@@ -138,17 +137,22 @@
         </v-row>
       </v-container>
       <DialogVue v-model="dialog" />
+      <DeleteVue v-model="dialogDelete" :idDelete="idDelete" @delete="DeleteUserById" />
     </div>
   </template>
   
   <script setup>
   import { onMounted, ref } from "vue";
+  import DeleteVue from '@/components/Confirm/IndexView.vue'
   import DialogVue from "../../../components/Admin/User/DialogView.vue";
   const dialog=ref(false)
+  const dialogDelete = ref(false)
+  const idDelete=ref(null)
 
 
 import { userServiceApi } from "@/service/user.api"
 import {useUsers} from '../Users/Users'
+import { showSuccessNotification } from "@/common/helper/helpers";
 const {users,query,getAllUsers}=useUsers()
 onMounted(async=>{
   getData()
@@ -159,6 +163,20 @@ const getData=async ()=>{
   const res=await getAllUsers()
   console.log(res);
   users.value=res.data
+}
+
+const DeleteUserById=async(id)=>{
+  const res=await userServiceApi._delete(id)
+  if(res.success)
+  {
+    dialogDelete.value=false
+    showSuccessNotification("Xóa thành công")
+    getData()
+  }
+  else
+  {
+    alert(res.message)
+  }
 }
   </script>
   
