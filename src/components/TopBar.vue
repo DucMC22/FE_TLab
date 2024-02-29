@@ -18,7 +18,7 @@
               <v-img 
                   src="https://alltop.vn/backend/media/images/posts/467/Tim_goc_chup_phu_hop-17057.jpg"
                   alt="Duc"
-                  style="width: 38px; height: 38px;"
+                  layout="width: 38px; height: 38px;"
                   >                              
               </v-img>
           </v-avatar>

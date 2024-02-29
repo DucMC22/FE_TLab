@@ -40,7 +40,15 @@
                       width="96px"
                       height="15px"
                     >
-                      Avatar
+                      AVATAR
+                    </th>
+                    <th
+                      class="text-left"
+                      style="opacity: 0.5"
+                      width="120px"
+                      height="15px"
+                    >
+                      TÊN NGƯỜI DÙNG
                     </th>
                     <th
                       class="text-center"
@@ -48,15 +56,7 @@
                       width="96px"
                       height="15px"
                     >
-                      Tên người dùng
-                    </th>
-                    <th
-                      class="text-center"
-                      style="opacity: 0.5"
-                      width="96px"
-                      height="15px"
-                    >
-                      Email
+                      EMAIL
                     </th>
                     <th
                       class="text-left"
@@ -64,7 +64,7 @@
                       width="96px"
                       height="15px"
                     >
-                      Ngày sinh
+                      NGÀY SINH
                     </th>
                     <th
                       class="text-left"
@@ -72,7 +72,7 @@
                       width="96px"
                       height="15px"
                     >
-                      Số điện thoại
+                      SỐ ĐIỆN THOẠI
                     </th>
                     <th
                       class="text-left"
@@ -80,7 +80,7 @@
                       width="96px"
                       height="15px"
                     >
-                      <p class="">Hành động</p>
+                      <p class="">HÀNH ĐỘNG</p>
                     </th>
                   </tr>
                 </thead>
@@ -88,20 +88,20 @@
                   <tr v-for="i in users" :key="i">
                     <td>
                       <v-img
-                        width="60"
+                        style="width: 36px;" 
                         height="50"
+                        radius="2px"
                         :src=i.imageUrl
                       ></v-img>
                     </td>
-                    <td class="text-center"> {{ i.name }}</td>
+                    <td style="font-weight: 600;"> {{ i.name }}</td>
                     <td class="text-center">{{ i.email }}</td>
                     <td>{{ i.birthday }}</td>
                     <td>{{ i.phonenumber }}</td>
                     <td class="text-left">
                       <div style="display: flex">
-                        <v-icon class="mr-3" style="opacity: 0.5; cursor: pointer;"
-                          >mdi mdi-square-edit-outline</v-icon
-                        >
+                        <v-btn variant="text"><v-icon style="opacity: 0.5" @click="idEdit=i.id; dialog=true">mdi mdi-square-edit-outline</v-icon></v-btn>
+                        
                         <v-btn variant="text" @click="idDelete=i.id;dialogDelete=true"><v-icon style="opacity: 0.5">
                       mdi mdi-trash-can-outline</v-icon></v-btn>
                       </div>
@@ -112,7 +112,7 @@
               <v-row class="ma-2">
                 <v-col cols="8">
                   <v-row>
-                    <p class="mt-5 opacity">Showing</p>
+                    <p class="mt-5 opacity" style="opacity: 0.5;">Showing</p>
                     <v-col cols="2">
                       <v-select
                         density="compact"
@@ -120,7 +120,7 @@
                         variant="outlined"
                       ></v-select>
                     </v-col>
-                    <p class="mt-5 opacity">of 50</p>
+                    <p class="mt-5 opacity" style="opacity: 0.5;">of 50</p>
                   </v-row>
                 </v-col>
                 <v-col cols="4" class="text-right">
@@ -136,7 +136,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <DialogVue v-model="dialog" />
+      <DialogVue v-model="dialog" :idEdit="idEdit"/>
       <DeleteVue v-model="dialogDelete" :idDelete="idDelete" @delete="DeleteUserById" />
     </div>
   </template>
@@ -148,6 +148,7 @@
   const dialog=ref(false)
   const dialogDelete = ref(false)
   const idDelete=ref(null)
+  const idEdit=ref(null)
 
 
 import { userServiceApi } from "@/service/user.api"

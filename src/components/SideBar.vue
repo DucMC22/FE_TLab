@@ -8,12 +8,12 @@
             ></v-img>
           </v-col>
           <v-col cols="4" class="text-right">
-            <v-icon>mdi mdi-backburger</v-icon>
+            <v-icon style="opacity: 0.5;">mdi mdi-backburger</v-icon>
           </v-col>
         </v-row>
       </v-toolbar>
       <v-list>
-        <v-list-subheader>Quản lí sản phẩm</v-list-subheader>
+        <v-list-subheader>QUẢN LÝ SẢN PHẨM</v-list-subheader>
         <v-list-item
           v-for="(item, i) in links"
           :key="i"

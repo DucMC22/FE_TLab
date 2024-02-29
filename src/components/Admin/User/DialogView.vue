@@ -179,7 +179,7 @@ const submit = handleSubmit(async () => {
     const formData = new FormData();
     formData.append('name', name.value);
     formData.append('email', email.value);
-    // formData.append('password', password.value);
+    formData.append('password',"null");
     formData.append('birthday', birthday.value);
     formData.append('phonenumber', phonenumber.value);
     formData.append('imageUrl', imageUrl.value);
