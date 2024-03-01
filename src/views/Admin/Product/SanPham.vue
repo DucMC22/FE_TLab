@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="3">
-          <v-text-field style="background-color: white" density="compact" variant="outlined" label="Tìm kiếm"
+          <v-text-field v-model="search" @keyup.enter="searchData()" style="background-color: white" density="compact" variant="outlined" label="Tìm kiếm"
             append-inner-icon="mdi mdi-magnify" single-line hide-details class="mr-2"></v-text-field>
         </v-col>
         <v-col cols="9" class="text-right">
@@ -16,28 +16,26 @@
             <v-table density="compact">
               <thead>
                 <tr>
-                  <th class="text-left" style="opacity: 0.5">TÊN SẢN PHẨM</th>
-                  <th class="text-left" style="opacity: 0.5">GIÁ</th>
-                  <th class="text-left" style="opacity: 0.5">SỐ LƯỢNG</th>
-                  <th class="text-left" style="opacity: 0.5">MÔ TẢ</th>
-                  <th class="text-left" style="opacity: 0.5">ẢNH</th>
-                  <th class="text-center" style="opacity: 0.5">HÀNH ĐỘNG</th>
+                  <th class="text-left" style="opacity: 0.5; font-family: Public Sans,sans-serif; font-size: 13px;" layout="width: 96px; height: 22px">TÊN SẢN PHẨM</th>
+                  <th class="text-left" style="opacity: 0.5; font-family: Public Sans,sans-serif; font-size: 13px;" layout="width: 61px; heogth: 15px">GIÁ</th>
+                  <th class="text-left" style="opacity: 0.5; font-family: Public Sans,sans-serif; font-size: 13px;" layout="width: 70px; height: 15px">SỐ LƯỢNG</th>
+                  <th class="text-left" style="opacity: 0.5; font-family: Public Sans,sans-serif; font-size: 13px;" layout="width: 41px; height: 15px">MÔ TẢ</th>
+                  <th class="text-left" style="opacity: 0.5; font-family: Public Sans,sans-serif; font-size: 13px;" layout="width: 30px; height: 15px">ẢNH</th>
+                  <th class="text-center" style="opacity: 0.5; font-family: Public Sans,sans-serif; font-size: 13px;" layout="width: 81px; height: 15px">HÀNH ĐỘNG</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="i in products" :key="i">
-                  <td style="font-weight:600" font-family="Public Sans"  font-size="15px" Line height="22px">{{ i.name }}</td>
-                  <td>$ {{ i.price }}</td>
-                  <td>{{ i.quantity }}</td>
-                  <td style="width: 250px" class="v-text-truncate">
-                    {{ i.description }}
-                  </td>
+                  <td style="font-weight:600; font-family: Public Sans,sans-serif; font-size: 15px;">{{ i.name }}</td>
+                  <td style="font-weight:400; font-family: Public Sans,sans-serif; font-size: 15px;">$ {{ i.price }}</td>
+                  <td style="font-weight:400; font-family: Public Sans,sans-serif; font-size: 15px;">{{ i.quantity }}</td>
+                  <td style="font-weight:400; font-family: Public Sans,sans-serif; font-size: 15px;"> {{ i.description }}</td>                                   
                   <td>
-                    <v-img style="width: 30px;" height="50" radius="2px" :src="i.imageUrl"></v-img>
+                    <v-img style="width: 36px;" height="50" radius="2px" :src="i.imageUrl"></v-img>
                   </td>
                   <td class="text-center">
-                    <v-btn variant="text"><v-icon style="opacity: 0.5" @click="idEdit=i.id; dialog=true">mdi mdi-square-edit-outline</v-icon></v-btn>
-                    <v-btn variant="text" @click="idDelete=i.id;dialogDelete=true"><v-icon style="opacity: 0.5">
+                    <v-btn variant="text"><v-icon style="opacity: 0.5; width: 24px; height: 24px;" @click="idEdit=i.id; dialog=true">mdi mdi-square-edit-outline</v-icon></v-btn>
+                    <v-btn variant="text" @click="idDelete=i.id;dialogDelete=true"><v-icon style="opacity: 0.5; width: 24px; height: 24px;">
                       mdi mdi-trash-can-outline</v-icon></v-btn>
                   </td>
                 </tr>
@@ -54,7 +52,7 @@
                 </v-row>
               </v-col>
               <v-col cols="4" class="text-right">
-                <v-pagination active-color="#0F60FF" variant="text" density="compact" :length="5"></v-pagination>
+                <v-pagination v-model="page" active-color="#0F60FF" variant="text" density="compact" :length="5"></v-pagination>
               </v-col>
             </v-row>
           </v-card>
@@ -67,18 +65,23 @@
 </template>
   
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import DeleteVue from '@/components/Confirm/IndexView.vue'
 import DialogVue from "../../../components//Admin/Product/DialogView.vue";
 const dialog = ref(false)
 const dialogDelete = ref(false)
 const idDelete=ref(null)
 const idEdit=ref(null)
+const search=ref(null)
+const page=ref(1)
 import { useProduct } from '../Product/Product'
 import { productServiceApi } from "@/service/product.api";
 import { showSuccessNotification } from "@/common/helper/helpers";
 const { products, query, getAllProducts } = useProduct()
 onMounted(async => {
+  query.keyword=""
+  query.page=1
+  query.limit=10
   getData()
 })
 
@@ -103,6 +106,14 @@ const DeleteProductById=async(id)=>{
     alert(res.message)
   }
 }
+const searchData=async()=>{
+  query.keyword=search.value
+  getData()
+}
+watch(page,(newvalue)=>{
+  query.page=newvalue
+  getData()
+})
 </script>
   
 <style></style>

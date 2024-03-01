@@ -3,12 +3,13 @@
       <v-toolbar style="background-color: white">
         <v-row>
           <v-col cols="8">
-            <v-img
+            <v-img 
               src="https://res.cloudinary.com/dgtjdhrnq/image/upload/v1705460127/logo1_adshdl.png"
+              style="max-width: 150px; max-height: 28px;"
             ></v-img>
           </v-col>
           <v-col cols="4" class="text-right">
-            <v-icon style="opacity: 0.5;">mdi mdi-backburger</v-icon>
+            <v-icon style="opacity: 0.5; width: 4px; height: 8px; border: 1.74px; ">mdi mdi-backburger</v-icon>
           </v-col>
         </v-row>
       </v-toolbar>

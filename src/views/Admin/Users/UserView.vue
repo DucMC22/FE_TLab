@@ -3,7 +3,7 @@
       <v-container>
         <v-row>
           <v-col cols="3">
-            <v-text-field
+            <v-text-field v-model="search" @keyup.enter="searchData()"
               style="
                 background-color: white;
                 font-size: 15px;
@@ -75,12 +75,12 @@
                       SỐ ĐIỆN THOẠI
                     </th>
                     <th
-                      class="text-left"
+                      class="tex-left"
                       style="opacity: 0.5"
                       width="96px"
                       height="15px"
                     >
-                      <p class="">HÀNH ĐỘNG</p>
+                      <p class="text-left ml-5">HÀNH ĐỘNG</p>
                     </th>
                   </tr>
                 </thead>
@@ -88,9 +88,7 @@
                   <tr v-for="i in users" :key="i">
                     <td>
                       <v-img
-                        style="width: 36px;" 
-                        height="50"
-                        radius="2px"
+                        style="width: 36px; height: 50px; radius: 2px" 
                         :src=i.imageUrl
                       ></v-img>
                     </td>
@@ -124,7 +122,7 @@
                   </v-row>
                 </v-col>
                 <v-col cols="4" class="text-right">
-                  <v-pagination
+                  <v-pagination v-model="page"
                     active-color="#0F60FF"
                     variant="text"
                     density="compact"
@@ -142,13 +140,15 @@
   </template>
   
   <script setup>
-  import { onMounted, ref } from "vue";
+  import { onMounted, ref, watch } from "vue";
   import DeleteVue from '@/components/Confirm/IndexView.vue'
   import DialogVue from "../../../components/Admin/User/DialogView.vue";
   const dialog=ref(false)
   const dialogDelete = ref(false)
   const idDelete=ref(null)
   const idEdit=ref(null)
+  const search=ref(null)
+  const page=ref(1)
 
 
 import { userServiceApi } from "@/service/user.api"
@@ -156,6 +156,9 @@ import {useUsers} from '../Users/Users'
 import { showSuccessNotification } from "@/common/helper/helpers";
 const {users,query,getAllUsers}=useUsers()
 onMounted(async=>{
+  query.keyword=""
+  query.page=1
+  query.limit=10
   getData()
 })
 
@@ -179,6 +182,14 @@ const DeleteUserById=async(id)=>{
     alert(res.message)
   }
 }
+const searchData=async()=>{
+  query.keyword=search.value
+  getData()
+}
+watch(page,(newvalue)=>{
+  query.page=newvalue
+  getData()
+})
   </script>
   
   <style>
