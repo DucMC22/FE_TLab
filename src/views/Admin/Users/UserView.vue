@@ -7,7 +7,7 @@
               style="
                 background-color: white;
                 font-size: 15px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.1); 
               "
               density="compact"
               variant="outlined"
@@ -19,13 +19,9 @@
             ></v-text-field>
           </v-col>
           <v-col cols="9" class="text-right">
-            <v-btn
-              @click="dialog = true"
-              color="primary"
-              prepend-icon="mdi mdi-plus"
-              class="text-uppercase"
-              >Tạo mới</v-btn
-            >
+            <v-btn @click="dialog = true" color="primary" prepend-icon="mdi mdi-plus" class="text-uppercase">
+              <span style="text-transform: lowercase;">Tạo mới</span>
+          </v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -35,8 +31,9 @@
                 <thead>
                   <tr>
                     <th
+                      
                       class="text-left"
-                      style="opacity: 0.5"
+                      style="opacity: 0.5; font-family: Public Sans,sans-serif; font-weight: 500; font-size: 13px; line-height: 15.28px;"
                       width="96px"
                       height="15px"
                     >
@@ -44,7 +41,7 @@
                     </th>
                     <th
                       class="text-left"
-                      style="opacity: 0.5"
+                      style="opacity: 0.5; font-family: Public Sans,sans-serif; font-weight: 500; font-size: 13px; line-height: 15.28px;"
                       width="120px"
                       height="15px"
                     >
@@ -52,7 +49,7 @@
                     </th>
                     <th
                       class="text-center"
-                      style="opacity: 0.5"
+                      style="opacity: 0.5; font-family: Public Sans,sans-serif; font-weight: 500; font-size: 13px; line-height: 15.28px;"
                       width="96px"
                       height="15px"
                     >
@@ -60,7 +57,7 @@
                     </th>
                     <th
                       class="text-left"
-                      style="opacity: 0.5"
+                      style="opacity: 0.5; font-family: Public Sans,sans-serif; font-weight: 500; font-size: 13px; line-height: 15.28px;"
                       width="96px"
                       height="15px"
                     >
@@ -68,7 +65,7 @@
                     </th>
                     <th
                       class="text-left"
-                      style="opacity: 0.5"
+                      style="opacity: 0.5; font-family: Public Sans,sans-serif; font-weight: 500; font-size: 13px; line-height: 15.28px;"
                       width="96px"
                       height="15px"
                     >
@@ -76,7 +73,7 @@
                     </th>
                     <th
                       class="tex-left"
-                      style="opacity: 0.5"
+                      style="opacity: 0.5; font-family: Public Sans,sans-serif; font-weight: 500; font-size: 13px; line-height: 15.28px;"
                       width="96px"
                       height="15px"
                     >
@@ -85,17 +82,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="i in users" :key="i">
+                  <tr style="font-family: Public Sans,sans-serif;" v-for="i in users" :key="i">
                     <td>
                       <v-img
-                        style="width: 36px; height: 50px; radius: 2px" 
+                        style="width: 36px; height: 50px; border-radius: 2px; " 
                         :src=i.imageUrl
                       ></v-img>
                     </td>
-                    <td style="font-weight: 600;"> {{ i.name }}</td>
-                    <td class="text-center">{{ i.email }}</td>
-                    <td>{{ i.birthday }}</td>
-                    <td>{{ i.phonenumber }}</td>
+                    <td style="font-weight: 600; font-family: Public Sans,sans-serif;"> {{ i.name }}</td>
+                    <td style="font-family: Public Sans,sans-serif; font-weight: 400; font-size: 15px; line-height: 22px;" class="text-center">{{ i.email }}</td>
+                    <td style="font-family: Public Sans,sans-serif; font-weight: 400; font-size: 15px; line-height: 22px;">{{ i.birthday }}</td>
+                    <td style="font-family: Public Sans,sans-serif; font-weight: 400; font-size: 15px; line-height: 22px;">{{ i.phonenumber }}</td>
                     <td class="text-left">
                       <div style="display: flex">
                         <v-btn variant="text"><v-icon style="opacity: 0.5" @click="idEdit=i.id; dialog=true">mdi mdi-square-edit-outline</v-icon></v-btn>
@@ -110,11 +107,11 @@
               <v-row class="ma-2">
                 <v-col cols="8">
                   <v-row>
-                    <p class="mt-5 opacity" style="opacity: 0.5;">Showing</p>
+                    <p class="mt-5 opacity"  style="opacity: 0.5;">Showing</p>
                     <v-col cols="2">
-                      <v-select
+                      <v-select v-model="Showing"
                         density="compact"
-                        :items="['10', '20', '25', '30', 'All']"
+                        :items="['10', '20', '30', '40',]"
                         variant="outlined"
                       ></v-select>
                     </v-col>
@@ -134,8 +131,8 @@
           </v-col>
         </v-row>
       </v-container>
-      <DialogVue v-model="dialog" :idEdit="idEdit"/>
-      <DeleteVue v-model="dialogDelete" :idDelete="idDelete" @delete="DeleteUserById" />
+      <DialogVue v-model="dialog" @close="close()" :idEdit="idEdit"/>
+      <DeleteVue v-model="dialogDelete" @close="close()" :idDelete="idDelete" @delete="DeleteUserById" />
     </div>
   </template>
   
@@ -149,6 +146,7 @@
   const idEdit=ref(null)
   const search=ref(null)
   const page=ref(1)
+  const Showing=ref(10)
 
 
 import { userServiceApi } from "@/service/user.api"
@@ -190,6 +188,16 @@ watch(page,(newvalue)=>{
   query.page=newvalue
   getData()
 })
+
+watch(Showing,(newvalue)=>{
+  query.limit=newvalue
+  getData()
+})
+const close=()=>
+{
+  dialog.value=false
+  dialogDelete.value=false
+}
   </script>
   
   <style>

@@ -5,7 +5,7 @@
           :items="['All','giày','quần','cây cảnh']" variant="outlined"></v-select>
       </v-col>
       <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select v-model="selectedSort" label="Giá" density="compact" :items="['Từ cao -> thấp','Từ thấp -> cao']"
+        <v-select v-model="selectedSort" label="Giá" density="compact" :items="['Từ cao -> thấp','Từ thấp -> cao']" 
           variant="outlined"></v-select>
       </v-col>
       <v-col cols="4" sm="6" md="6" lg="2">

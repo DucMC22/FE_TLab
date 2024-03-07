@@ -20,7 +20,9 @@
                 </template>
                 <v-list>
                     <v-list-item><v-list-item-title>
-                        <router-link style="text-decoration: none; color: black;" to="/login">Đăng xuất</router-link>
+                        <button>Xem hồ sơ</button>
+                        <v-spacer></v-spacer>
+                        <router-link style="text-decoration: none; color: black;" to="/login">Đăng xuất</router-link> 
                     </v-list-item-title></v-list-item>
                 </v-list>
             </v-menu>

@@ -14,12 +14,12 @@
         </v-row>
       </v-toolbar>
       <v-list>
-        <v-list-subheader>QUẢN LÝ SẢN PHẨM</v-list-subheader>
+        <v-list-subheader  style="font-family: Public Sans,sans-serif; font-weight: 400; font-size: 11px; line-height: 14px;">QUẢN LÝ SẢN PHẨM</v-list-subheader>
         <v-list-item
           v-for="(item, i) in links"
           :key="i"
           :value="item"
-          color="primary"
+          color="black"
           :to="item.route"
         >
           <template v-slot:prepend>

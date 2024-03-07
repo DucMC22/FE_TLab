@@ -1,213 +1,220 @@
 <template>
-    <v-app>
-      <NavBar />
-      <v-container fluid>
-        <v-row class="mr-3 ml-3 mt-3">
-          <v-col cols="12">
-            <v-chip variant="text">Related</v-chip>
-            <v-chip class="mr-2 mt-2"> worldwide shipping </v-chip>
-            <v-chip class="mr-2 mt-2"> under $50 </v-chip>
-            <v-chip class="mr-2 mt-2"> kitten </v-chip>
-            <v-chip class="mr-2 mt-2"> plastic plugs </v-chip>
-            <v-chip class="mr-2 mt-2"> pucker shoes </v-chip>
-            <v-chip class="mr-2 mt-2"> vintage typewriter </v-chip>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" sm="3" v-for="(product, i) in products" :key="i">
-            <v-card height="auto" align="center" variant="flat" hover>
-              <v-img
-                :src="product.image"
-                style="width: 100%"
-                height="200"
-                contain
-              ></v-img>
-              <v-card-text class="mt-n1 text-left" style="font-size: 16px">
-                <strong>{{ product.title }}</strong>
-              </v-card-text>
-              <v-card-text class="mt-n4 text-left" style="font-size: 24px">
-                <strong>{{ product.price }}</strong>
-              </v-card-text>
-              <v-card-text class="mt-n4 text-left">
-                <strong style="opacity: 0.5">{{ product.reviews }}</strong>
-                <v-spacer></v-spacer>
-                <v-row>
-                  <v-col cols="5">
-                    <v-icon color="yellow" size="small">mdi mdi-star</v-icon>
-                    <v-icon color="yellow" size="small">mdi mdi-star</v-icon>
-                    <v-icon color="yellow" size="small">mdi mdi-star</v-icon>
-                    <v-icon color="yellow" size="small">mdi mdi-star</v-icon>
-                    <v-icon color="yellow" size="small">mdi mdi-star-half</v-icon>
-                    <v-icon color="yellow" v-if="product.feedback==5" size="x-small">mdi mdi-star</v-icon>
-                <v-icon color="yellow" v-if="product.feedback<5 && product.feedback>4" size="x-small">mdi mdi-star-half</v-icon>
-                <span style="font-size: 12px;">{{ product.feedback }}</span>
-                  </v-col>
-                  
-                  <v-col class="text-right" cols="6">
-                    <v-btn
-                      prepend-icon="mdi mdi-heart-outline"
-                      class="text-capitalize mb-2"
-                      size="small"
-                      color="primary"
-                      variant="outlined"
-                    >
-                      watch
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-        <v-divider></v-divider>
-        <v-spacer></v-spacer>
-      </v-container>
-      <FooterView />
-    </v-app>
-  </template>
-  
-  <script>
-  import { defineComponent } from "vue";
-  
-  // Components
-  import NavBar from "@/components/NavBar.vue";
-  import FooterView from "@/components/FooterView.vue";
-  
-  export default defineComponent({
-    name: "HomeView",
-    setup() {
-      return {
-        product: true,
-        other: false,
-        slider2: 50,
-        products: [
-          {
-            class: "pa-0",
-            image:
-              "https://tse4.mm.bing.net/th?id=OIP.69xYJ7gEQQuHA2IfAArppgHaF9&pid=Api&P=0&h=220",
-            title:
-              "vintage typewrite to post awesome stories about UI design and webdev",
-            price: "$ 45.59",
-            reviews: " Eligible for Shipping To Mars or somewhere else",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://tse1.mm.bing.net/th?id=OIP.LhLCw-i8XHAFHTBgZJ42SwHaHa&pid=Api&P=0&h=220",
-            title:
-              "Lee Pucker design. Leather botinki for handsome designers. Free shipping.",
-            price: "$ 13.98",
-            reviews: "1258 bids, 359 watchers $5.95 for shipping",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://tse2.mm.bing.net/th?id=OIP.yxHTdi5cU38ryuwyDikDrwHaHo&pid=Api&P=0&h=220",
-            title:
-              "Timesaving kitten to save month on development.Playfull, cute, cheap!",
-            price: "$ 128.99",
-            reviews: " Eligible for nothing :(",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://img2.thuthuatphanmem.vn/uploads/2018/12/05/chau-cay-canh-dep_121227165.jpg",
-            title:
-              "Plastic useless plugs and tubes for high-fidelity prototyping. Fit & Eat!",
-            price: "$ 12.48",
-            reviews: "Wordwide shitting available Buyers protection! ",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://img2.thuthuatphanmem.vn/uploads/2018/12/05/chau-cay-canh-dep_121227165.jpg",
-            title:
-              "Creativity stimulating lotion. Drink every morning to generate better ideas!",
-            price: "$ 12.48",
-            reviews: " Wordwide shifting available Buyers protection!",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://img2.thuthuatphanmem.vn/uploads/2018/12/05/chau-cay-canh-dep_121227165.jpg",
-            title:
-              "Creativity stimulating lotion. Drink every morning to generate better ideas!",
-            price: "$ 145.00",
-            reviews: " Showcasing onHovered state fafasdadasd",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://tse2.explicit.bing.net/th?id=OIP.nEOxo6nzo8Qmi1cKULM_UAHaHa&pid=Api&P=0&h=220",
-            title:
-              "Creativity stimulating lotion. Drink every morning to generate better ideas! ",
-            price: "$ 13.95",
-            reviews: " 1258 bids, 359 watchers $5.95 for shipping",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://product.hstatic.net/1000203080/product/elfinbook-mini-th-ng-minh-t-i-s-d-ng-m-y-t-nh-x-ch__1__grande.jpg",
-            title:
-              "Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",
-            price: "$ 9.50",
-            reviews: "Eligible for Shipping To Mars or somewhere else",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://gomtruongan.vn/uploads/products/02042020050202/bo-am-chen-bat-trang-men-hoa-bien-dang-trong-mau-xanh-m8_02042020050202.jpg",
-            title:
-              "Professional teadrinking set for every designer and developer",
-            price: "$ 145.00",
-            reviews: " Eligible for nothing :(",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://img2.thuthuatphanmem.vn/uploads/2018/12/05/chau-cay-canh-dep_121227165.jpg",
-            title: "One string Bonsai description",
-            price: "$ 145.00",
-            reviews: " Wordwide shifting available Buyers protection possible!",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://2momart.vn/upload/toplist/082020/opi-nail-lacquer.png",
-            title:
-              "Simply best item in town to shine bright with your Nine Inch Nails",
-            price: "$ 1.25",
-            reviews: " Eligible for Shipping To Mars or somewhere else",
-          },
-          {
-            class: "pa-0",
-            image:
-              "https://img2.thuthuatphanmem.vn/uploads/2018/12/05/chau-cay-canh-dep_121227165.jpg",
-            title:
-              "KISTOCHKI & KRASIBO. Top cosmetics brand from Chelyabinsk is here!",
-            price: "$ 145.00",
-            reviews: " 1258 bids, 359 watchers $5.95 for shipping",
-          },
-        ],
-      };
-    },
-    components: {
-      NavBar,
-      FooterView,
-    },
-  });
-  </script>
-  <style scoped>
-  .v-container {
-    width: 100%;
-    padding: 16px 0px !important;
-    margin-right: auto;
-    margin-left: auto;
+  <v-row class="ml-3 mt-3">
+    <v-col cols="4" sm="4" md="6" lg="2">
+      <v-select v-model="SelectedCategory" density="compact" label="SORT BY"
+        :items="['All','Quần','Áo']" variant="outlined"></v-select>
+    </v-col>
+    <v-col cols="4" sm="4" md="6" lg="2">
+      <v-select v-model="selectedSort" density="compact" :items="['Từ cao -> thấp','Từ thấp -> cao']"
+        variant="outlined"></v-select>
+    </v-col>
+    <v-col cols="4" sm="4" md="6" lg="2">
+      <v-select v-model="selectedThree" density="compact" :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+        variant="outlined"></v-select>
+    </v-col>
+    <v-col cols="12" sm="12" md="6" lg="6" class="text-right">
+      <v-btn style="background-color: rgb(212, 227, 255);color:#0f0f13" class="rounded-1 text-capitalize" variant="tonal">
+        Show
+        <span class="text-lowercase ml-1"> all</span>
+      </v-btn>
+      <v-btn style="font-weight: 400;color: rgb(34, 100, 209);" bg-color="white" class="rounded-1 text-capitalize"
+        variant="elevated" elevation="3">
+        Auction
+      </v-btn>
+      <v-btn style="background-color:rgb(212, 227, 255);color:#0f0f13" class="rounded-1 text-capitalize" variant="tonal">
+        Buy
+        <span class="text-lowercase ml-1"> now</span>
+      </v-btn>
+      <v-btn  style="background-color: rgb(212, 227, 255)" class="ml-5" ariant="tonal" elevation="0">
+        <v-icon>mdi mdi-menu</v-icon>
+      </v-btn>
+      <v-btn class="mr-5"  variant="elevated">
+        <v-icon style="color: #0c5bda;">mdi mdi-microsoft</v-icon>
+      </v-btn>
+    </v-col>
+  </v-row>
+  <v-row class="mr-3 ml-1">
+    <v-col cols="12">
+      <v-chip variant="text"><span class="mt-2" style="font-weight: 550;">Related</span></v-chip>
+      <v-chip class="mr-2 mt-2">
+        worldwide shipping
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        under $50
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        kitten
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        plastic plugs
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        pucker shoes
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        vintage typewriter
+      </v-chip>
+    </v-col>
+  </v-row>
+  <v-card class="custom-shadow">
+    <v-row class="mr-3 ml-3 mt-1">
+      <v-col class="d-flex flex-column justify-center align-center" v-for="item in products" :key="item" cols="12" sm="6" md="4" lg="3">
+        <v-card hover variant="flat" style="min-height: 472px;width: 250px;" class="mb-3 my-card">
+          <v-img class="mx-auto mt-2" width="220px" height="224px"
+            :src="item.url"
+            alt="Product Image"></v-img>
+          <v-card-text class="my-card-text" style="max-width: 227px;font-size: 16px;line-height: 24px; height: 90px;font-family: 'Inter', sans-serif;color: #19191D;">{{ item.name }}</v-card-text>
+          <v-card-text class="mt-2 mx-auto" style="font-family: 'Inter', sans-serif;color:#000000;max-width: 250px;font-size: 24px;font-weight: 700;padding: auto;height: 36px;">
+            {{ item.price }}
+            <span v-if="item.sale>0" style="border-radius: 4px;margin-right: 0.7%;font-size: 12px;float: right;min-width: 70px;min-height: 24px;padding: 2px;background-color: #ECF7ED;text-align: center;color: #37833B;font-weight: 300;font-family: Roboto;">
+              {{item.sale}}% OFF
+            </span>
+            <span v-if="item.cool==true" style="border-radius: 4px;margin-right: 0.7%;font-size: 12px;float: right;min-width: 70px;min-height: 24px;padding: 2px;background-color: #FDEDF2;text-align: center;color: #C23564;font-weight: 300;font-family: Roboto;">
+              Cool deal!
+            </span>
+          </v-card-text>
+          <p class="ml-4" style="margin-top: 8px;;height: 41px;font-size: 14px;font-family: 'Inter', sans-serif;color: #787885;">{{ item.description }}</p>
+          <v-row style="margin-top: 5px;margin-left: -6px;">
+            <v-col class="ml-3 mt-1" cols="5" style="display: flex;">
+              <v-icon color="amber" size="x-small">mdi mdi-star</v-icon>
+              <v-icon color="amber" size="x-small">mdi mdi-star</v-icon>
+              <v-icon color="amber" size="x-small">mdi mdi-star</v-icon>
+              <v-icon color="amber" size="x-small">mdi mdi-star</v-icon>
+              <v-icon v-if="item.feedback<5 && item.feedback>4" color="amber" size="x-small">mdi mdi-star-half</v-icon>
+              <v-icon v-else color="amber" size="x-small">mdi mdi-star</v-icon>
+              <span style="font-size: 12px;">4.05</span>
+            </v-col>
+            <v-col class="text-right" cols="6">
+              <v-btn class="text-capitalize" style="margin-right: 6px;font-family: 'Inter', sans-serif;font-size: 14px;" color="primary" size="small" prepend-icon="mdi-heart-outline"
+                variant="outlined">
+                Watch
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-card>
+  <div class="d-flex justify-space-between footer" style="margin-top: 40px;margin-bottom: 10px;">
+    <v-card  class="card pa-5 d-flex flex-column justify-center align-center rounded-1" style="min-height: 156px; background-color: #EDEDF0; width: 32%;">
+      <img style="margin-top: -10px;" width="80" height="80" :src="footer1">
+      <v-card-title class="text-center" style="font-family: Quicksand,sans-serif;font-weight: 700;font-size: 20px;">Clear & Usable user flows</v-card-title>
+      <v-card-subtitle class="text-center" style="font-family: 'Inter', sans-serif;font-size: 14px;">Let’s boost your marketplace</v-card-subtitle>
+    </v-card>
+    <v-card class="card pa-5 d-flex flex-column justify-center align-center rounded-1"
+      style="min-height: 156px; background-color: #EDEDF0; width: 32%;">
+      <img style="margin-top: -10px;" width="80" height="80" :src="footer2">
+      <v-card-title class="text-center" style="font-family: Quicksand,sans-serif;font-weight: 700;font-size: 20px;">Fine & Styled components</v-card-title>
+      <v-card-subtitle class="text-center" style="font-family: 'Inter', sans-serif;font-size: 14px;">Speed up with Setproduct templates</v-card-subtitle>
+    </v-card>
+    <v-card class="card pa-5 d-flex flex-column justify-center align-center rounded-1"
+      style="min-height: 156px; background-color: #EDEDF0; width: 32%;">
+      <img style="margin-top: -10px;" width="80" height="80" :src="footer3">
+      <v-card-title class="text-center" style="font-family: Quicksand,sans-serif;font-weight: 700;font-size: 20px;">Customizable & Reusable</v-card-title>
+      <v-card-subtitle class="text-center" style="font-family: 'Inter', sans-serif;font-size: 14px;">Take our UX patterns and rebuild</v-card-subtitle>
+    </v-card>
+  </div>
+</template>
+
+<script setup>
+import {ref,reactive, computed} from "vue"
+import footer1 from "@/assets/footer1.png"
+import footer2 from "@/assets/footer2.png"
+import footer3 from "@/assets/footer3.png"
+import product1 from "@/assets/01.png"
+import product2 from "@/assets/02.png"
+import product3 from "@/assets/03.png"
+import product4 from "@/assets/04.png"
+import product5 from "@/assets/05.png"
+import product6 from "@/assets/06.png"
+import product7 from "@/assets/07.png"
+import product8 from "@/assets/08.png"
+import product9 from "@/assets/09.png"
+import product10 from "@/assets/010.png"
+import product11 from "@/assets/011.png"
+import product12 from "@/assets/012.png"
+const products=reactive([
+  {
+    url:product1,name:"Vintage Typewriter to post awesome stories about UI design and webdev.",price:"$49.50",sale:0,cool:false,description:"Eligible for Shipping To Mars or somewhere else",feedback:4.05
+  },
+  {
+    url:product2,name:"Lee Pucker design. Leather botinki for handsome designers. Free shipping.",price:"$13.95",sale:0,cool:false,description:"1258 bids, 359 watchers $5.95 for shipping",feedback:4.56
+  },
+  {
+    url:product3,name:"Timesaving kitten to save months on development. Playful, cute, cheap!",price:"$128.99",sale:0,cool:false,description:"Eligible for nothing :(",feedback:4.87
+  },
+  {
+    url:product4,name:"Plastic useless plugs and tubes for high-fidelity prototyping. Fit & Eat!",price:"$12.48",sale:50,cool:false,description:"Wordwide shitting available Buyers protection possible!",feedback:4.99
+  },
+  {
+    url:product5,name:"Creativity stimulating lotion. Drink every morning to generate better ideas!",price:"$12.48",sale:0,cool:false,description:"Wordwide shifting available Buyers protection possible!",feedback:4.99
+  },
+  {
+    url:product6,name:"Prototyping items to create a lot if useless things...",price:"$128.99",sale:0,cool:false,description:"Showcasing onHovered state",feedback:4.87
+  },
+  {
+    url:product7,name:"John Von Ebalkin SPRING ",price:"$13.95",sale:0,cool:false,description:"1258 bids, 359 watchers $5.95 for shipping",feedback:4.56
+  },
+  {
+    url:product8,name:"Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",price:"$9.50",sale:0,cool:false,description:"Eligible for Shipping To Mars or somewhere else",feedback:4.77
+  },
+  {
+    url:product9,name:"Professional teadrinking set for every designer and developer",price:"$128.99",sale:0,cool:false,description:"Eligible for nothing :(",feedback:4.87
+  },
+  {
+    url:product10,name:"One string Bonsai description",price:"$11.68",sale:0,cool:false,description:"Wordwide shifting available Buyers protection possible!",feedback:4.99
+  },
+  {
+    url:product11,name:"Simply best item in town to shine bright with your Nine Inch Nails",price:"$1.25",sale:0,cool:true,description:"Eligible for Shipping To Mars or somewhere else",feedback:4.77
+  },
+  {
+    url:product12,name:"KISTOCHKI & KRASIBO. Top cosmetics brand from Chelyabinsk is here!",price:"$23.25",sale:0,cool:false,description:"1258 bids, 359 watchers $5.95 for shipping",feedback:4.56
   }
-  .v-card.borderme {
-    border: 2px solid black !important;
+])
+const SelectedCategory=ref('Useless first')
+const selectedSort=ref('Condition')
+const selectedThree=ref('Delivery options')
+
+const filteredProducts = computed(() => {
+  let filtered = [];
+
+  if (SelectedCategory.value === 'All') {
+    filtered = [...products];
+  } else {
+    filtered = products.filter(product => product.name.includes(SelectedCategory.value));
   }
-  .v-card.borderout {
-    border: 1px solid #d5f0db !important;
+  if (selectedSort.value === "Từ cao -> thấp") {
+    return filtered.sort((a, b) => b.price - a.price);
+  } else {
+    return filtered.sort((a, b) => a.price - b.price);
   }
-  </style>
+});
+</script>
+
+<style>
+.custom-shadow {
+  margin-top: 10px;
+  border-radius:4px ;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+}
+.my-card {
+  max-height: 200px; /* Đặt chiều cao tối đa của thẻ */
+  overflow: hidden;  /* Ẩn phần nội dung vượt quá chiều cao */
+}
+
+.my-card-text {
+  overflow-y:hidden;
+}
+
+
+@media (max-width: 830px) {
+  .footer{
+    flex-direction: column;
+  }
+  .footer .card{
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 95% !important;
+  }
+}
+</style>

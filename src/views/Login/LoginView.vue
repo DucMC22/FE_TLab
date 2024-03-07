@@ -26,7 +26,7 @@
             </v-btn>
             <div class="text-center">
                 Bạn chưa có tài khoản ?
-                <a class="text-decoration-none text-center" style="color:#0F60FF;">
+                <a class="text-decoration-none text-center" style="color:#0F60FF;"> 
                     Đăng ký ?
                 </a>
             </div>

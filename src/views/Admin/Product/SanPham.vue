@@ -7,7 +7,9 @@
             append-inner-icon="mdi mdi-magnify" single-line hide-details class="mr-2"></v-text-field>
         </v-col>
         <v-col cols="9" class="text-right">
-          <v-btn @click="dialog = true" color="primary" prepend-icon="mdi mdi-plus" class="text-uppercase">Tạo mới</v-btn>
+          <v-btn @click="dialog = true" color="primary" prepend-icon="mdi mdi-plus" class="text-uppercase">
+              <span style="text-transform: lowercase;">Tạo mới</span>
+          </v-btn>
         </v-col>
       </v-row>
       <v-row>
@@ -46,7 +48,7 @@
                 <v-row>
                   <p class="mt-5 opacity" style="opacity: 0.5;">Showing</p>
                   <v-col cols="2">
-                    <v-select density="compact" :items="['10', '20', '30', '40','50', 'All']" variant="outlined"></v-select>
+                    <v-select  v-model="Showing" density="compact" :items="['10', '20', '30', '40','50']" variant="outlined"></v-select>
                   </v-col>
                   <p class="mt-5 opacity" style="opacity: 0.5;">of 50</p>
                 </v-row>
@@ -59,8 +61,8 @@
         </v-col>
       </v-row>
     </v-container>
-    <DialogVue v-model="dialog" :idEdit="idEdit"/>
-    <DeleteVue v-model="dialogDelete" :idDelete="idDelete" @delete="DeleteProductById" />
+    <DialogVue v-model="dialog" @close="close()" :idEdit="idEdit" />
+    <DeleteVue v-model="dialogDelete" @close="close()" :idDelete="idDelete" @delete="DeleteProductById"/>
   </div>
 </template>
   
@@ -74,6 +76,7 @@ const idDelete=ref(null)
 const idEdit=ref(null)
 const search=ref(null)
 const page=ref(1)
+const Showing=ref(10)
 import { useProduct } from '../Product/Product'
 import { productServiceApi } from "@/service/product.api";
 import { showSuccessNotification } from "@/common/helper/helpers";
@@ -114,6 +117,18 @@ watch(page,(newvalue)=>{
   query.page=newvalue
   getData()
 })
+
+watch(Showing,(newvalue)=>{
+  query.limit=newvalue
+  getData()
+})
+
+
+const close=()=>
+{
+  dialog.value=false
+  dialogDelete.value=false
+}
 </script>
   
 <style></style>
