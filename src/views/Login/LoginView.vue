@@ -2,7 +2,7 @@
     <div>
         <v-card class="mx-auto pa-12 pb-8 my-6" variant="flat" max-width="500" rounded="lg">
             <v-img class="mx-auto my-6" max-width="100"
-                src="https://tse4.mm.bing.net/th?id=OIP.fv5DeUz-OmV84NOdioiodgHaEc&pid=Api&P=0&h=220"></v-img>
+                src="https://up.yimg.com/ib/th?id=OIP.F5I5hov98oLuVKQ0by4GPgHaGu&pid=Api&rs=1&c=1&qlt=95&w=136&h=123"></v-img>
             <div class="text-h4 text-center">
                 Đăng nhập
             </div>

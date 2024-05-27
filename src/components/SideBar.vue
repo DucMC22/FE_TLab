@@ -14,7 +14,7 @@
         </v-row>
       </v-toolbar>
       <v-list>
-        <v-list-subheader  style="font-family: Public Sans,sans-serif; font-weight: 400; font-size: 11px; line-height: 14px;">QUẢN LÝ SẢN PHẨM</v-list-subheader>
+        <v-list-subheader  style="font-family: Public Sans,sans-serif; font-weight: 400; font-size: 12px; line-height: 14px;">QUẢN LÝ SẢN PHẨM</v-list-subheader>
         <v-list-item
           v-for="(item, i) in links"
           :key="i"
@@ -44,6 +44,9 @@
             text: "Users",
             route: "users",
           },
+          { icon: " mdi mdi-account-tie", text: "Nhân viên", route: "NhanVien" },
+          { icon: " mdi mdi-billiards", text: "Đơn hàng", route: "" },
+          { icon: " mdi mdi-warehouse", text: "Quản lý kho", route: "" },
         ],
       };
     },

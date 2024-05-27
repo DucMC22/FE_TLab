@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Admin/Users/UserView.vue'),
         props: true
       },
+      {
+        path: 'nhanvien',
+        component: () => import('../views/Admin/NhanVien/NhanVien.vue'),
+        props: true
+      },
     ]
   },
   {
